@@ -121,10 +121,10 @@ def mrmr_base(K, relevance_func, redundancy_func,
         else:
             score_denominator = pd.Series(1, index=features)
 
-        score = score_numerator / score_denominator
+        score = score_numerator - score_denominator
 
         best_feature = score.index[score.argmax()]
         selected_features.append(best_feature)
         not_selected_features.remove(best_feature)
 
-    return selected_features
+    return selected_features,score
